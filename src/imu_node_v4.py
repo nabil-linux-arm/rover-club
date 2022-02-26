@@ -42,7 +42,7 @@ def imuTransmit():
 
     pub = rospy.Publisher('pose',imu_data,queue_size=10)
     rospy.init_node('imu_talker',anonymous=True)
-    loop_rate = rospy.Rate(1) # 5hz, 5 messages a second
+    loop_rate = rospy.Rate(5) # 5hz, 5 messages a second
 
     while not rospy.is_shutdown():
         getAcceleration()
