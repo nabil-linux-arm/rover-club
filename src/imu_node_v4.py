@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 import board
 import adafruit_bno055
@@ -42,7 +42,7 @@ def imuTransmit():
 
     pub = rospy.Publisher('pose',imu_data,queue_size=10)
     rospy.init_node('imu_talker',anonymous=True)
-    loop_rate = rospy.Rate(5) # 5hz, 5 messages a second
+    loop_rate = rospy.Rate(1) # 1hz, 1 messages a second
 
     while not rospy.is_shutdown():
         getAcceleration()
@@ -53,7 +53,7 @@ def imuTransmit():
         rospy.loginfo(f"Temperature = {temperature()}")
 
         # Publishes the message into the topic
-        pub.publish()
+        pub.publish(imu_msg)
         loop_rate.sleep()
 
 # Gets temperature of IMU in C degrees
